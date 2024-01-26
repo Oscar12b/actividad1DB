@@ -10,12 +10,21 @@ CREATE TABLE tbDepartamentos (
     Descripcio_departamento Varchar(50)
 );
 
+Create table Cargos(
+	Id_cargo Int auto_increment primary Key,
+	Nombre_Cargo VARCHAR (20)
+);
+
 CREATE TABLE tbEmpleados(
 	Id_Empleado Int AUTO_INCREMENT PRIMARY KEY,
 	Nombre_Empleado  VARCHAR (20),
     Apellido_empleado VARCHAR(20),
     Cargo_Empleado VARCHAR (20),
     Fecha_contratacion DATE,
+    id_cargo Int,
+    CONSTRAINT fk_departamento
+    FOREIGN KEY (id_cargo)
+    REFERENCES Cargos (id_cargo),
     Id_Departamento Int,
     CONSTRAINT fk_tbdepartamento_tbEmpleado
     FOREIGN KEY (Id_Departamento)
