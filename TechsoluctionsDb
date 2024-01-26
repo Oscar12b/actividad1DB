@@ -1,0 +1,43 @@
+DROP DATABASE if EXISTS actividad1;
+
+CREATE DATABASE actividad1;
+
+USE actividad1;
+
+CREATE TABLE tbDepartamentos (
+	Id_Departamento Int AUTO_INCREMENT PRIMARY KEY,
+	Nombre_Departamento VARCHAR(20),
+    Descripcio_departamento Varchar(50)
+);
+
+CREATE TABLE tbEmpleados(
+	Id_Empleado Int AUTO_INCREMENT PRIMARY KEY,
+	Nombre_Empleado  VARCHAR (20),
+    Apellido_empleado VARCHAR(20),
+    Cargo_Empleado VARCHAR (20),
+    Fecha_contratacion DATE,
+    Id_Departamento Int,
+    CONSTRAINT fk_tbdepartamento_tbEmpleado
+    FOREIGN KEY (Id_Departamento)
+    REFERENCES tbDepartamentos (Id_Departamento)
+);
+
+
+CREATE TABLE tbProyectos(
+	Id_Proyecto INT AUTO_INCREMENT PRIMARY KEY,
+	Nombre_proyecto VARCHAR (50),
+	Fecha_inicio Date,
+    fecha_finalizacion Date
+);
+
+CREATE TABLE tbasignacion_proyectos(
+	Id_asignacion Int AUTO_INCREMENT PRIMARY KEY,
+    Id_Empleado Int,
+    CONSTRAINT fk_tbempleados_tbasignacion 
+    FOREIGN KEY (Id_Empleado) 
+    REFERENCES tbEmpleados(Id_Empleado),
+    Id_Proyecto INT, 
+    CONSTRAINT fk_tbproyectos_tbasignacion
+    FOREIGN KEY (Id_Proyecto)
+    REFERENCES tbProyectos (Id_Proyecto)
+); 
